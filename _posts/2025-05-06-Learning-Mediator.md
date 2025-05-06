@@ -18,3 +18,14 @@ services.AddMediatR(cfg => {
     cfg.AddOpenBehavior(typeof(GenericBehavior<,>));
     });
 ```
+
+{% highlight csharp %}
+services.AddMediatR(cfg => {
+    cfg.RegisterServicesFromAssembly(typeof(Startup).Assembly);
+    cfg.AddBehavior<PingPongBehavior>();
+    cfg.AddStreamBehavior<PingPongStreamBehavior>();
+    cfg.AddRequestPreProcessor<PingPreProcessor>();
+    cfg.AddRequestPostProcessor<PingPongPostProcessor>();
+    cfg.AddOpenBehavior(typeof(GenericBehavior<,>));
+    });
+{% endhighlight csharp %}
